@@ -8,11 +8,14 @@ maskr = input('Enter mask rows');
 maskc = input('Enter mask cols');
 rowadd = (maskr - 1)/2;%Row padding
 coladd = (maskc - 1)/2;%Column padding
-
+%% Padding
 paddedImage = padarray(M,[rowadd,coladd],'replicate');
 subplot(211);imshow(paddedImage);impixelinfo; 
 title('Padded Image with added noise');
-
+%% Filtering mechanism:-
+%1)Get the subimage
+%2)Reshape it to a vector of size 1 * size(mask)
+%3)Sort the vector and get the median.
 for i = 1 + rowadd : r + rowadd%Run uptil total rows
     for j = 1 + coladd : c + coladd%Run uptil total columns
         subImage = paddedImage(i - rowadd : i + rowadd , j - coladd : j + coladd);
